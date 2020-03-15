@@ -1,29 +1,21 @@
+import { createSchema } from "./utils/createSchema";
 import "reflect-metadata";
 import { ApolloServer } from "apollo-server-express";
 import Express from "express";
-import { buildSchema } from "type-graphql";
 import { createConnection } from "typeorm";
 import session from "express-session";
 import connectRedis from "connect-redis";
 import cors from "cors";
 
-import { RegisterResolver } from "./modules/user/Register";
 import { redis } from "./redis";
-import { LoginResolver } from "./modules/user/Login";
-import { MeResolver } from "./modules/user/Me";
 
 const main = async () => {
   await createConnection();
 
-  const schema = await buildSchema({
-    resolvers: [MeResolver, RegisterResolver, LoginResolver],
-    authChecker: ({ context: { req } }) => {
-      return !!req.session.userId;
-    },
-  });
+  const schema = await createSchema();
 
   const apolloServer = new ApolloServer({
-    context: ({ req }: any) => ({ req }),
+    context: ({ req, res }: any) => ({ req, res }),
     schema,
   });
 
@@ -44,7 +36,7 @@ const main = async () => {
         client: redis as any,
       }),
       name: "qid",
-      secret: "aslkdfjoiq12312",
+      secret: `${process.env.SECRET}`,
       resave: false,
       saveUninitialized: false,
       cookie: {
@@ -58,7 +50,7 @@ const main = async () => {
   apolloServer.applyMiddleware({ app });
 
   app.listen(4000, () => {
-    console.log("Server running on http://localhost:4000/graphql 🚀");
+    console.log("Server running on http://localhost:4000/graphql 🚀 ");
   });
 };
 

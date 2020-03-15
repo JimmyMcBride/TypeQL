@@ -17,12 +17,19 @@ export class LoginResolver {
     });
 
     if (!user) {
+      console.log("User not found. 🤷‍♂");
       return null;
     }
 
     const valid = await bcrypt.compare(password, user.password);
 
     if (!valid) {
+      console.log("Password is not valid. 💀");
+      return null;
+    }
+
+    if (!user.confirmed) {
+      console.log("Please confirm email. ✉️");
       return null;
     }
 
