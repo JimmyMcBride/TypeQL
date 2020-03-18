@@ -21,6 +21,7 @@
     "ts-node": "^8.6.2",
     "type-graphql": "^0.17.6",
     "typeorm": "^0.2.24",
+    "typescript": "^3.8.3",
     "uuid": "^7.0.2"
   },
   "devDependencies": {
@@ -37,8 +38,7 @@
     "faker": "^4.1.0",
     "jest": "^25.1.0",
     "ts-jest": "^25.2.1",
-    "ts-node-dev": "^1.0.0-pre.44",
-    "typescript": "^3.8.3"
+    "ts-node-dev": "^1.0.0-pre.44"
   },
   "scripts": {
     "start": "ts-node src/index.ts",
