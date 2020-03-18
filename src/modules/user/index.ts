@@ -5,3 +5,5 @@ export * from "./CurrentUser";
 export * from "./ForgotPassword";
 export * from "./ConfirmUser";
 export * from "./ChangePassword";
+export * from "./CreateUser";
+export * from "./ProfilePicture";

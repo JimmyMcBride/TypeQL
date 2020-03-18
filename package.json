@@ -41,7 +41,8 @@
     "typescript": "^3.8.3"
   },
   "scripts": {
-    "start": "ts-node-dev src/index.ts",
+    "start": "ts-node src/index.ts",
+    "server": "ts-node-dev src/index.ts",
     "db:setup": "ts-node ./src/test-utils/setup.ts",
     "test": "npm run db:setup && jest"
   }

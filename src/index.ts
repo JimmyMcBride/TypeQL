@@ -1,5 +1,5 @@
-import { createSchema } from "./utils/createSchema";
 import "reflect-metadata";
+import { createSchema } from "./utils/createSchema";
 import { ApolloServer } from "apollo-server-express";
 import Express from "express";
 import { createConnection } from "typeorm";
@@ -47,7 +47,7 @@ const main = async () => {
     })
   );
 
-  apolloServer.applyMiddleware({ app });
+  apolloServer.applyMiddleware({ app, cors: false });
 
   app.listen(4000, () => {
     console.log("Server running on http://localhost:4000/graphql 🚀 ");
