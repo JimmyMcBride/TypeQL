@@ -1,11 +1,5 @@
 {
   "name": "default",
-  "type": "postgres",
-  "host": "localhost",
-  "port": 5432,
-  "username": "postgres",
-  "password": "PG_PASSWORD",
-  "database": "postgres",
   "synchronize": true,
   "logging": true,
   "entities": ["src/entity/*.*"]

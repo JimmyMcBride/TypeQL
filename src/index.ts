@@ -10,7 +10,22 @@ import cors from "cors";
 import { redis } from "./redis";
 
 const main = async () => {
-  await createConnection();
+  await createConnection({
+    name: "default",
+    type: "postgres",
+    url: process.env.DATABASE_URL,
+    host: "localhost",
+    port: 5432,
+    username: "jim",
+    password: "password",
+    database: "typeorm",
+    synchronize: true,
+    logging: true,
+    entities: ["src/entity/*.*"],
+    extra: {
+      ssl: process.env.SSL,
+    },
+  });
 
   const schema = await createSchema();
 
