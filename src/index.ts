@@ -1,4 +1,7 @@
 import "reflect-metadata";
+
+require("dotenv").config();
+
 import { createSchema } from "./utils/createSchema";
 import { ApolloServer } from "apollo-server-express";
 import Express from "express";
@@ -23,7 +26,7 @@ const main = async () => {
     logging: true,
     entities: ["src/entity/*.*"],
     extra: {
-      ssl: process.env.SSL,
+      ssl: process.env.SSL || false,
     },
   });
 
@@ -66,7 +69,7 @@ const main = async () => {
 
   app.listen(process.env.PORT, () => {
     console.log(
-      `Server running on http://localhost:${process.env.PORT}/graphql 🚀 `
+      `Server running on http://localhost:${process.env.PORT}/graphql 🚀`
     );
   });
 };
